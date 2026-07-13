@@ -1,4 +1,6 @@
 import React from 'react';
+import ActionSection from '../../components/actionsection/ActionSection';
+import ContactSection from '../../components/contactsection/ContactSection';
 import heroBg from '../../assets/hero.png';
 
 import './Home.css';
@@ -6,9 +8,26 @@ import './Home.css';
 // Import images from assets folder
 import Mixer350 from "../../assets/mixer.png";
 import Sheller350 from "../../assets/sheller.png";
+import Block from "../../assets/block.png";
+import Block2 from "../../assets/block2.png";
+import Cabros from "../../assets/cabros.png";
+import Colors from "../../assets/colors.png";
+import Culvert from "../../assets/culvert.png";
+import CulvertMold from "../../assets/culvertmold.png";
+import FeedMix from "../../assets/feedmix.png";
+
+import SecurityDoor1 from "../../assets/steeldoor.png"; 
+import SecurityDoor2 from "../../assets/steeldoors1.png"; 
+
+
+import SlidingGate from "../../assets/zigzagcabromold.png"; 
+import SwingGate from "../../assets/vibratingtable.png";  
+
+
+
 
 const Home = () => {
-  // 1. Structural Categories Config Matrix (Used for the quick anchor navigation links)
+  // 1. Structural Categories Config Matrix
   const categories = [
     { id: 'mixers', label: 'Concrete Mixers', short: 'Machinery', imgText: 'Mixer' },
     { id: 'blocks', label: 'Block Machines', short: 'Production', imgText: 'Block' },
@@ -24,90 +43,90 @@ const Home = () => {
       { 
         name: "PMW-350L Diesel Engine Mixer", 
         detail: "Heavy-duty steel drum, 1-bag capacity, powered by a high-torque Lister Petter type engine.",
-        price: "$4,850.00",
+        price: "Kshs 4,850.00",
         image: Mixer350
       },
       { 
         name: "PMW-500L Electric Site Mixer", 
         detail: "Three-phase electric motor setup engineered for stationary high-volume commercial concrete batching.",
-        price: "$6,200.00",
+        price: "Kshs 6,200.00",
         image: Sheller350
       },
       { 
         name: "PMW-750L Heavy Duty Mixer", 
         detail: "Industrial-grade mixer with reinforced drum and advanced hydraulic system for large-scale projects.",
-        price: "$8,950.00",
-        image: ""
+        price: "Kshs 8,950.00",
+        image: FeedMix 
       }
     ],
     blocks: [
       { 
         name: "Manual Drop-Egg Layer System", 
         detail: "High-yield mobile setup for structural 9x9x18 block units. Low maintenance costs.",
-        price: "$3,450.00",
-        image: ""
+        price: "Kshs 3,450.00",
+        image: Block
       },
       { 
         name: "Hydraulic Multi-Cavity Static Press", 
         detail: "Stationary production machine built for high-density paving blocks and solid foundation bricks.",
-        price: "$12,750.00",
-        image: ""
+        price: "Kshs 12,750.00",
+        image: Block2
       }
     ],
     windows: [
       { 
         name: "T-Section Steel Casement Units", 
         detail: "Heavy gauge iron frames complete with integrated burglarproofing bars and brass fastener points.",
-        price: "$2,850.00",
-        image: ""
+        price: "Kshs 2,850.00",
+        image: Cabros 
       },
       { 
         name: "Modern Architectural Slimline Framing", 
         detail: "Premium clean-line steel profiles pre-treated for maximum weather protection and aesthetic integration.",
-        price: "$3,400.00",
-        image: ""
+        price: "Kshs 3,400.00",
+        image: Colors 
       }
     ],
     doors: [
       { 
         name: "Reinforced Single-Leaf Anti-Burglar Door", 
         detail: "Heavy sheets over custom skeletal framework, featuring multi-point heavy deadbolt locking channels.",
-        price: "$4,250.00",
-        image: ""
+        price: "Kshs 4,250.00",
+        image: SecurityDoor1
       },
       { 
         name: "Double-Leaf Commercial Facility Shutter", 
         detail: "Industrial-grade double door set up tailored with heavy hinges and overhead escape configurations.",
-        price: "$7,800.00",
-        image: ""
+        price: "Kshs 7,800.00",
+        image: SecurityDoor2
       }
     ],
     gates: [
       { 
         name: "Heavy Structural Sliding Gate Assembly", 
         detail: "Constructed with solid structural frames and heavy rollers, optimized for automation systems.",
-        price: "$5,600.00",
-        image: ""
+        price: "Kshs 5,600.00",
+        image: "SlidingGate" 
       },
       { 
         name: "Ornate Classical Swing Gate Set", 
         detail: "Hand-forged detailing panels combined with structural square tubes for maximum perimeter resilience.",
-        price: "$6,950.00",
-        image: ""
+        price: "Kshs 6,950.00",
+        image: "SwingGate" 
       }
     ],
     molds: [
       { 
         name: "Pre-Cast Culvert Ring Steel Shuttering", 
         detail: "Interlocking heavy plate mold configurations optimized for uniform culvert production runs.",
-        price: "$9,200.00",
-        image: ""
+        price: "Kshs 9,200.00",
+        image: CulvertMold
       },
       { 
         name: "Custom Column & Fencing Post Molds", 
         detail: "Precision dimension templates engineered to cast crisp, structural load-bearing concrete modules.",
-        price: "$3,850.00",
-        image: ""
+        price: "Kshs 3,850.00",
+        image: Culvert
       }
     ]
   };
@@ -212,6 +231,9 @@ const Home = () => {
 
         </div>
       </section>
+
+      <ActionSection />
+      <ContactSection />
      
     </div>
   );

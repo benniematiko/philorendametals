@@ -1,0 +1,143 @@
+/* ==========================================================================
+   CALL TO ACTION COMPONENT STYLES
+   ========================================================================== */
+.action-section {
+  position: relative;
+  background-color: var(--dark-blue);
+  padding: 6rem 0;
+  overflow: hidden;
+  color: var(--white);
+}
+
+/* Subtle architectural grid pattern in the background for consistency */
+.action-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.04;
+  background-size: 20px 20px;
+  background-image: linear-gradient(to right, var(--white) 1px, transparent 1px),
+                    linear-gradient(to bottom, var(--white) 1px, transparent 1px);
+  z-index: 1;
+}
+
+.action-container {
+  position: relative;
+  width: 90%;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4rem;
+  z-index: 2;
+}
+
+.action-content {
+  max-width: 800px;
+}
+
+.action-tagline {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--orange);
+  letter-spacing: 2px;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.action-content h2 {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+.action-content p {
+  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  min-width: 280px;
+}
+
+/* Buttons tailored specifically for call-out contrast */
+.btn-action-primary,
+.btn-action-secondary {
+  display: block;
+  text-align: center;
+  padding: 1.1rem 2rem;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: all 0.3s var(--transition-smooth);
+}
+
+.btn-action-primary {
+  background: var(--orange);
+  color: var(--white);
+  box-shadow: 0 4px 15px rgba(255, 123, 37, 0.3);
+}
+
+.btn-action-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 123, 37, 0.45);
+}
+
+.btn-action-secondary {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--white);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-action-secondary:hover {
+  background: var(--white);
+  color: var(--dark-blue);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   RESPONSIVE MATRIX MEDIA DOWN-SCALING
+   ========================================================================== */
+@media (max-width: 992px) {
+  .action-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2.5rem;
+  }
+  
+  .action-buttons {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  
+  .btn-action-primary,
+  .btn-action-secondary {
+    flex: 1;
+    min-width: 240px;
+  }
+}
+
+@media (max-width: 576px) {
+  .action-section {
+    padding: 4rem 0;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+  
+  .btn-action-primary,
+  .btn-action-secondary {
+    width: 100%;
+  }
+}

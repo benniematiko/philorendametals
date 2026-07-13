@@ -40,15 +40,15 @@ const Navbar = () => {
           <Link to="/" className="nav-item" onClick={() => setIsMobileMenuOpen(false)}>
             Home
           </Link>
-          <Link to="/capabilities" className="nav-item" onClick={() => setIsMobileMenuOpen(false)}>
+          {/* <Link to="/capabilities" className="nav-item" onClick={() => setIsMobileMenuOpen(false)}>
             Capabilities
+          </Link> */}
+          <Link to="/products" className="nav-item" onClick={() => setIsMobileMenuOpen(false)}>
+            Our Products
           </Link>
-          <Link to="/projects" className="nav-item" onClick={() => setIsMobileMenuOpen(false)}>
-            Projects
-          </Link>
-          <Link to="/about" className="nav-item" onClick={() => setIsMobileMenuOpen(false)}>
+          {/* <Link to="/about" className="nav-item" onClick={() => setIsMobileMenuOpen(false)}>
             About Us
-          </Link>
+          </Link> */}
           <Link to="/contact" className="nav-cta-mobile" onClick={() => setIsMobileMenuOpen(false)}>
             Get a Quote
           </Link>

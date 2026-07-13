@@ -1,174 +1,455 @@
-.portfolio-section {
-  background: var(--bg-surface);
-  padding: 8rem 0;
-  color: var(--text-primary);
-  border-top: 1px solid rgba(255, 255, 255, 0.02);
+/* ==========================================================================
+   PRODUCTS INDEPENDENT DASHBOARD STYLE ARCHITECTURE
+   ========================================================================== */
+.products-page {
+  background-color: #f8f9fa;
+  min-height: 100vh;
+  padding-bottom: 6rem;
 }
 
-.portfolio-container {
-  width: 90%;
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-.portfolio-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 4rem;
-  flex-wrap: wrap;
-  gap: 2rem;
-}
-
-.portfolio-header h2 {
-  font-size: 2.5rem;
-  font-weight: 800;
-  margin-top: 0.5rem;
-}
-
-/* Technical Segmented Controller styling */
-.portfolio-filters {
-  display: flex;
-  background: var(--bg-dark);
-  padding: 0.35rem;
-  border-radius: 6px;
-  border: 1px solid rgba(255, 255, 255, 0.04);
-  gap: 0.25rem;
-}
-
-.filter-btn {
-  background: transparent;
-  border: none;
-  color: var(--text-muted);
-  padding: 0.6rem 1.2rem;
-  font-size: 0.85rem;
-  font-weight: 600;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: all 0.2s ease;
-}
-
-.filter-btn:hover {
-  color: var(--text-primary);
-}
-
-.filter-btn.active {
-  background: rgba(255, 170, 0, 0.1);
-  color: var(--accent-color);
-  border: 1px solid rgba(255, 170, 0, 0.15);
-}
-
-/* Portfolio Card Grid layout layout matrix */
-.portfolio-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: 2.5rem;
-}
-
-.project-card {
-  background: var(--bg-dark);
-  border: 1px solid rgba(255, 255, 255, 0.02);
-  border-radius: 8px;
-  overflow: hidden;
-  transition: all 0.4s var(--transition-smooth);
-}
-
-.project-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 20px 40px -15px rgba(0,0,0,0.7);
-}
-
-/* Technical Slate Blueprint Graphic background */
-.project-image-placeholder {
+/* --- BANNER VIEW PANEL --- */
+.products-hero-banner {
+  background: linear-gradient(135deg, #003366 0%, #001f4d 100%);
+  color: var(--white);
+  padding: 6rem 0 5rem 0;
   position: relative;
-  height: 260px;
-  background: linear-gradient(135deg, #121824 0%, #1a2336 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-  overflow: hidden;
 }
 
-.blueprint-grid-overlay {
+.products-hero-banner::after {
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  opacity: 0.15;
-  background-size: 20px 20px;
-  background-image: linear-gradient(to right, #94a3b8 1px, transparent 1px),
-                    linear-gradient(to bottom, #94a3b8 1px, transparent 1px);
+  opacity: 0.03;
+  background-size: 15px 15px;
+  background-image: linear-gradient(to right, #ffffff 1px, transparent 1px),
+                    linear-gradient(to bottom, #ffffff 1px, transparent 1px);
 }
 
-.placeholder-text {
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.4);
-  letter-spacing: 1px;
-  z-index: 1;
-  text-transform: uppercase;
+.products-hero-container {
+  width: 90%;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
-.project-details {
-  padding: 2rem;
-}
-
-.project-alloy {
-  color: var(--accent-color);
+.banner-tag {
   font-size: 0.75rem;
   font-weight: 700;
+  color: var(--orange);
+  letter-spacing: 2.5px;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.products-hero-banner h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.products-hero-banner p {
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 600px;
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+
+/* --- DASHBOARD CONTROL HUB PANEL --- */
+.products-dashboard-layout {
+  margin-top: -2.5rem;
+  position: relative;
+  z-index: 5;
+}
+
+.dashboard-container {
+  width: 90%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.control-station-panel {
+  background: var(--white);
+  padding: 1.75rem;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 33, 102, 0.06);
+  border: 1px solid rgba(0, 51, 102, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Live Interactive Search Core */
+.search-input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.search-icon {
+  position: absolute;
+  left: 1.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.1rem;
+  opacity: 0.5;
+}
+
+.dashboard-search-bar {
+  width: 100%;
+  padding: 1.1rem 3.5rem 1.1rem 3rem;
+  font-size: 1.05rem;
+  border: 1px solid rgba(0, 51, 102, 0.15);
+  border-radius: 6px;
+  background: #fdfdfd;
+  color: var(--black);
+  transition: all 0.3s ease;
+}
+
+.dashboard-search-bar:focus {
+  outline: none;
+  border-color: var(--primary-blue);
+  background: var(--white);
+  box-shadow: 0 0 0 4px rgba(0, 86, 179, 0.08);
+}
+
+.clear-search-btn {
+  position: absolute;
+  right: 1.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #999;
+}
+
+/* Horizontal Filter Navigation Matrix */
+.filter-navigation-tabs {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+  scrollbar-width: thin;
+}
+
+.filter-tab-btn {
+  white-space: nowrap;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  background: #f1f5fa;
+  color: var(--dark-blue);
+  border: 1px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s var(--transition-smooth);
+}
+
+.filter-tab-btn:hover {
+  background: var(--light-blue);
+  color: var(--primary-blue);
+}
+
+.filter-tab-btn.tab-active {
+  background: var(--dark-blue);
+  color: var(--white);
+  border-color: var(--dark-blue);
+}
+
+/* Metrics Meta Counters Row */
+.results-meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2rem 0 1.5rem 0;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.active-filter-pill {
+  background: var(--light-blue);
+  color: var(--primary-blue);
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+/* ==========================================================================
+   INVENTORY DATA GRID CORES
+   ========================================================================== */
+.inventory-dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+  gap: 2.5rem;
+}
+
+.inventory-spec-card {
+  background: var(--white);
+  border-radius: 8px;
+  border: 1px solid rgba(0, 51, 102, 0.06);
+  box-shadow: 0 4px 15px rgba(0, 33, 102, 0.02);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s var(--transition-smooth), box-shadow 0.3s ease;
+}
+
+.inventory-spec-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 35px rgba(0, 33, 102, 0.07);
+}
+
+/* Card Media Header Container */
+.inventory-visual-box {
+  position: relative;
+  width: 100%;
+  height: 240px;
+  background: #eef3f9;
+}
+
+.inventory-raw-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.inventory-blueprint-mesh {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #0f2b46 0%, #071624 100%);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.inventory-blueprint-mesh::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0.08;
+  background-size: 14px 14px;
+  background-image: linear-gradient(to right, #fff 1px, transparent 1px),
+                    linear-gradient(to bottom, #fff 1px, transparent 1px);
+}
+
+.mesh-icon { font-size: 2rem; }
+.inventory-blueprint-mesh span {
+  color: rgba(255, 255, 255, 0.4);
+  font-family: monospace;
+  font-size: 0.8rem;
+}
+
+/* Reactive Availability Badges */
+.status-tag {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.status-tag.in-stock { background: #d4edda; color: #155724; }
+.status-tag.3-days-lead-time { background: #fff3cd; color: #856404; }
+.status-tag.built-to-order,
+.status-tag.custom-dimensions,
+.status-tag.custom-layout-only,
+.status-tag.2-weeks-lead-time,
+.status-tag.6-weeks-production { background: #e2e3e5; color: #383d41; }
+
+/* Product Details Body Block */
+.inventory-data-core {
+  padding: 2rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.inventory-cat-indicator {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--orange);
   text-transform: uppercase;
   letter-spacing: 1.5px;
+  margin-bottom: 0.5rem;
   display: block;
+}
+
+.inventory-item-title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--dark-blue);
+  line-height: 1.25;
+  margin-bottom: 0.75rem;
+}
+
+.inventory-item-desc {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #444;
+  margin-bottom: 1.5rem;
+}
+
+/* Embedded Metrics Specifications Array */
+.technical-specs-table {
+  background: #f8fafc;
+  border: 1px solid #edf2f7;
+  padding: 1rem;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+  flex: 1;
+}
+
+.technical-specs-table h4 {
+  font-size: 0.8rem;
+  color: #718096;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.75rem;
+  font-weight: 700;
+}
+
+.specs-inline-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.spec-metric-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  border-bottom: 1px dashed #e2e8f0;
+  padding-bottom: 0.25rem;
+}
+
+.spec-metric-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.metric-label {
+  color: #4a5568;
+  text-transform: capitalize;
+  font-weight: 500;
+}
+
+.metric-val {
+  color: var(--dark-blue);
+  font-weight: 700;
+}
+
+/* Card Pricing Controls Layout Footer */
+.inventory-footer-pricing {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.25rem;
+  border-top: 2px solid #edf2f7;
+  gap: 1rem;
+}
+
+.pricing-label {
+  font-size: 0.7rem;
+  color: #718096;
+  text-transform: uppercase;
+  display: block;
+}
+
+.currency-readout {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--primary-blue);
+}
+
+.btn-spec-quote {
+  background: var(--dark-blue);
+  color: var(--white);
+  padding: 0.75rem 1.2rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.2s ease;
+  display: inline-block;
+  text-align: center;
+}
+
+.btn-spec-quote:hover {
+  background: var(--orange);
+}
+
+/* --- EMPTY SEARCH MATRIX OVERLAY FALLBACK --- */
+.empty-inventory-state {
+  text-align: center;
+  background: var(--white);
+  padding: 5rem 2rem;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 51, 102, 0.06);
+  margin-top: 2rem;
+}
+
+.empty-warning-graphic {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.empty-inventory-state h3 {
+  font-size: 1.5rem;
+  color: var(--dark-blue);
   margin-bottom: 0.5rem;
 }
 
-.project-details h3 {
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: var(--text-primary);
-  margin-bottom: 1.25rem;
+.empty-inventory-state p {
+  color: #666;
+  margin-bottom: 2rem;
 }
 
-.project-spec-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  padding: 6px 12px;
+.reset-dashboard-btn {
+  background: var(--dark-blue);
+  color: var(--white);
+  border: none;
+  padding: 0.85rem 2rem;
+  font-weight: 700;
   border-radius: 4px;
+  cursor: pointer;
+  text-transform: uppercase;
 }
 
-.spec-label {
-  font-size: 0.75rem;
-  color: var(--text-muted);
+.reset-dashboard-btn:hover {
+  background: var(--orange);
 }
 
-.spec-val {
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--text-primary);
-  font-family: monospace;
-}
-
-/* --- RESPONSIVENESS --- */
-@media (max-width: 768px) {
-  .portfolio-grid {
+/* ==========================================================================
+   RESPONSIVE SCALING ADAPTABILITY
+   ========================================================================== */
+@media (max-width: 992px) {
+  .inventory-dashboard-grid {
     grid-template-columns: 1fr;
   }
-  .portfolio-header {
+}
+
+@media (max-width: 576px) {
+  .control-station-panel {
+    padding: 1rem;
+  }
+  .inventory-footer-pricing {
     flex-direction: column;
     align-items: flex-start;
+    gap: 1.25rem;
   }
-  .portfolio-filters {
+  .btn-spec-quote {
     width: 100%;
-    flex-direction: column;
-  }
-  .filter-btn {
-    text-align: left;
   }
 }
