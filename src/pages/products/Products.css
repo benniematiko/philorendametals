@@ -259,12 +259,15 @@
   letter-spacing: 0.5px;
 }
 .status-tag.in-stock { background: #d4edda; color: #155724; }
-.status-tag.3-days-lead-time { background: #fff3cd; color: #856404; }
+.status-tag.three-days-lead-time { 
+  background: #fff3cd; 
+  color: #856404; 
+}
 .status-tag.built-to-order,
 .status-tag.custom-dimensions,
 .status-tag.custom-layout-only,
-.status-tag.2-weeks-lead-time,
-.status-tag.6-weeks-production { background: #e2e3e5; color: #383d41; }
+.status-tag.two-weeks-lead-time,
+.status-tag.six-weeks-production { background: #e2e3e5; color: #383d41; }
 
 /* Product Details Body Block */
 .inventory-data-core {

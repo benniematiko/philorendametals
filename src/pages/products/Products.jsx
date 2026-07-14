@@ -6,11 +6,10 @@ import Mixer350 from "../../assets/mixer.png";
 import Sheller350 from "../../assets/sheller.png";
 
 const Products = () => {
-  // 1. Reactive Navigation Filter States
-  const [selectedCategory, setSelectedCategory] = useState('all');
+  // 1. Reactive Navigation Filter States (Only searchQuery remains)
   const [searchQuery, setSearchQuery] = useState('');
 
-  // 2. Verified Complete Product Database
+  // 2. Verified Complete Product Database (Updated to Kshs)
   const fullProductsMatrix = useMemo(() => [
     { 
       id: "mix-350",
@@ -18,7 +17,7 @@ const Products = () => {
       name: "PMW-350L Diesel Engine Mixer", 
       specs: { capacity: "1-Bag Mix", power: "Lister Petter Type Diesel", weight: "380 kg" },
       detail: "Heavy-duty steel drum, 1-bag capacity, powered by a high-torque mechanical start engine optimized for rough site conditions.",
-      price: "$4,850.00",
+      price: "Kshs 4,850.00",
       image: Mixer350,
       availability: "In Stock"
     },
@@ -28,7 +27,7 @@ const Products = () => {
       name: "PMW-500L Electric Site Mixer", 
       specs: { capacity: "2-Bag Mix", power: "Three-Phase 5HP Motor", weight: "510 kg" },
       detail: "Three-phase electric motor setup engineered for stationary high-volume commercial concrete batching operations.",
-      price: "$6,200.00",
+      price: "Kshs 6,200.00",
       image: Sheller350,
       availability: "3 Days Lead Time"
     },
@@ -38,7 +37,7 @@ const Products = () => {
       name: "PMW-750L Heavy Duty Mixer", 
       specs: { capacity: "3-Bag Mix", power: "Hydraulic Diesel Combo", weight: "740 kg" },
       detail: "Industrial-grade mixer with reinforced alloy drum structural framing and advanced hydraulic tip control configurations.",
-      price: "$8,950.00",
+      price: "Kshs 8,950.00",
       image: "",
       availability: "Built to Order"
     },
@@ -48,7 +47,7 @@ const Products = () => {
       name: "Manual Drop-Egg Layer System", 
       specs: { output: "900 Units / Day", moldSize: "9x9x18 inches", operation: "Manual Lever" },
       detail: "High-yield mobile mechanical drop layout for structural block units. Low maintenance overhead, perfect for decentralized fabrication.",
-      price: "$3,450.00",
+      price: "Kshs 3,450.00",
       image: "",
       availability: "In Stock"
     },
@@ -58,7 +57,7 @@ const Products = () => {
       name: "Hydraulic Multi-Cavity Static Press", 
       specs: { output: "3,200 Units / Day", pressure: "160 Bar Hydraulic", operation: "Semi-Automated" },
       detail: "Stationary heavy production matrix machine built for high-density interlocking paving blocks and solid foundation bricks.",
-      price: "$12,750.00",
+      price: "Kshs 12,750.00",
       image: "",
       availability: "6 Weeks Production"
     },
@@ -68,7 +67,7 @@ const Products = () => {
       name: "T-Section Steel Casement Units", 
       specs: { gauge: "14-Gauge Profile", security: "Integrated Bars", glass: "Fits 5mm-8mm" },
       detail: "Heavy gauge iron frames complete with integrated burglarproofing bars, cold-rolled weather seals, and brass fastener hinges.",
-      price: "$2,850.00",
+      price: "Kshs 2,850.00",
       image: "",
       availability: "In Stock"
     },
@@ -78,7 +77,7 @@ const Products = () => {
       name: "Modern Architectural Slimline Framing", 
       specs: { gauge: "16-Gauge Slim", security: "High-Tensile Internal", glass: "Double-Glaze Ready" },
       detail: "Premium clean-line steel architectural profiles pre-treated with zinc chromate primer for maximum weather protection.",
-      price: "$3,400.00",
+      price: "Kshs 3,400.00",
       image: "",
       availability: "Custom Dimensions"
     },
@@ -88,7 +87,7 @@ const Products = () => {
       name: "Reinforced Single-Leaf Anti-Burglar Door", 
       specs: { cladding: "3mm Steel Plate", lock: "4-Way Deadbolt System", finish: "Powder Coated" },
       detail: "Heavy cladding sheets over structural framework, featuring internal anti-cut armor channels and reinforced hinge points.",
-      price: "$4,250.00",
+      price: "Kshs 4,250.00",
       image: "",
       availability: "In Stock"
     },
@@ -98,7 +97,7 @@ const Products = () => {
       name: "Heavy Structural Sliding Gate Assembly", 
       specs: { track: "Solid Ground V-Track", core: "4x4 inch Frame", automation: "Ready Layout" },
       detail: "Constructed with massive structural perimeter profiles and heavy guide wheels, structurally balanced for external automation gear.",
-      price: "$5,600.00",
+      price: "Kshs 5,600.00",
       image: "",
       availability: "Custom Layout Only"
     },
@@ -108,33 +107,20 @@ const Products = () => {
       name: "Pre-Cast Culvert Ring Steel Shuttering", 
       specs: { diameter: "900mm Standard", plate: "6mm Heavy Plate", lock: "Tapered Pins" },
       detail: "Heavy-duty interlocking structural wall mold assemblies optimized for repeatable, uniform drainage concrete casting.",
-      price: "$9,200.00",
+      price: "Kshs 9,200.00",
       image: "",
       availability: "2 Weeks Lead Time"
     }
   ], []);
 
-  // 3. Filter Category Navigation Menu Configuration
-  const filterTabs = [
-    { id: 'all', label: 'All Machinery & Hardware' },
-    { id: 'mixers', label: 'Concrete Mixers' },
-    { id: 'blocks', label: 'Block Production' },
-    { id: 'windows', label: 'Windows Framing' },
-    { id: 'doors', label: 'Security Doors' },
-    { id: 'gates', label: 'Steel Gates' },
-    { id: 'molds', label: 'Custom Molds' }
-  ];
-
-  // 4. Live Parsing Computation Engine
+  // 3. Live Parsing Computation Engine (Filters only by text query search)
   const processedProducts = useMemo(() => {
     return fullProductsMatrix.filter((item) => {
-      const matchesCategory = selectedCategory === 'all' || item.category === selectedCategory;
-      const matchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                            item.detail.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                            item.id.toLowerCase().includes(searchQuery.toLowerCase());
-      return matchesCategory && matchesSearch;
+      return item.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+             item.detail.toLowerCase().includes(searchQuery.toLowerCase()) ||
+             item.id.toLowerCase().includes(searchQuery.toLowerCase());
     });
-  }, [selectedCategory, searchQuery, fullProductsMatrix]);
+  }, [searchQuery, fullProductsMatrix]);
 
   return (
     <div className="products-page">
@@ -151,7 +137,7 @@ const Products = () => {
       <div className="products-dashboard-layout">
         <div className="dashboard-container">
           
-          {/* SEARCH AND FILTER CONTROL STATION */}
+          {/* SEARCH CONTROL STATION (Navigation Tabs Removed) */}
           <div className="control-station-panel">
             <div className="search-input-wrapper">
               <span className="search-icon">🔍</span>
@@ -166,18 +152,6 @@ const Products = () => {
                 <button className="clear-search-btn" onClick={() => setSearchQuery('')}>×</button>
               )}
             </div>
-
-            <nav className="filter-navigation-tabs">
-              {filterTabs.map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setSelectedCategory(tab.id)}
-                  className={`filter-tab-btn ${selectedCategory === tab.id ? 'tab-active' : ''}`}
-                >
-                  {tab.label}
-                </button>
-              ))}
-            </nav>
           </div>
 
           {/* DYNAMIC RESULTS READOUT SUMMARY */}
@@ -247,10 +221,10 @@ const Products = () => {
             <div className="empty-inventory-state">
               <div className="empty-warning-graphic">⚠️</div>
               <h3>No Engineering Matrix Found</h3>
-              <p>No machinery matching those specific descriptors or filtering sets is logged in active inventory.</p>
+              <p>No machinery matching those specific descriptors is logged in active inventory.</p>
               <button 
                 className="reset-dashboard-btn"
-                onClick={() => { setSelectedCategory('all'); setSearchQuery(''); }}
+                onClick={() => setSearchQuery('')}
               >
                 Reset System Query
               </button>
