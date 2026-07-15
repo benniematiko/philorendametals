@@ -19,22 +19,18 @@ import FeedMix from "../../assets/feedmix.png";
 import SecurityDoor1 from "../../assets/steeldoor.png"; 
 import SecurityDoor2 from "../../assets/steeldoors1.png"; 
 
-
 import SlidingGate from "../../assets/zigzagcabromold.png"; 
 import SwingGate from "../../assets/vibratingtable.png";  
 
-
-
-
 const Home = () => {
-  // 1. Structural Categories Config Matrix
+  // 1. Structural Categories Config Matrix (Now featuring mapped image objects)
   const categories = [
-    { id: 'mixers', label: 'Concrete Mixers', short: 'Machinery', imgText: 'Mixer' },
-    { id: 'blocks', label: 'Block Machines', short: 'Production', imgText: 'Block' },
-    { id: 'windows', label: 'Metallic Windows', short: 'Architectural', imgText: 'Window' },
-    { id: 'doors', label: 'Security Doors', short: 'Fabrication', imgText: 'Door' },
-    { id: 'gates', label: 'Steel Gates', short: 'Perimeter', imgText: 'Gate' },
-    { id: 'molds', label: 'Custom Molds', short: 'Engineering', imgText: 'Mold' }
+    { id: 'mixers', label: 'Concrete Mixers', short: 'Machinery', image: Mixer350 },
+    { id: 'blocks', label: 'Block Machines', short: 'Production', image: Block },
+    { id: 'windows', label: 'Metallic Windows', short: 'Architectural', image: Cabros },
+    { id: 'doors', label: 'Security Doors', short: 'Fabrication', image: SecurityDoor1 },
+    { id: 'gates', label: 'Steel Gates', short: 'Perimeter', image: SlidingGate },
+    { id: 'molds', label: 'Custom Molds', short: 'Engineering', image: CulvertMold }
   ];
 
   // 2. Full Catalog Database Matrix
@@ -106,13 +102,13 @@ const Home = () => {
         name: "Heavy Structural Sliding Gate Assembly", 
         detail: "Constructed with solid structural frames and heavy rollers, optimized for automation systems.",
         price: "Kshs 5,600.00",
-        image: "SlidingGate" 
+        image: SlidingGate 
       },
       { 
         name: "Ornate Classical Swing Gate Set", 
         detail: "Hand-forged detailing panels combined with structural square tubes for maximum perimeter resilience.",
         price: "Kshs 6,950.00",
-        image: "SwingGate" 
+        image: SwingGate 
       }
     ],
     molds: [
@@ -167,7 +163,7 @@ const Home = () => {
             <h2>Our Manufacturing Categories</h2>
           </div>
 
-          {/* Anchor Nav Links Matrix */}
+          {/* Updated Rounded/Circular Grid with Image Backgrounds and Text Overlays */}
           <div className="categories-circular-grid">
             {categories.map((cat) => (
               <a 
@@ -176,12 +172,17 @@ const Home = () => {
                 className="category-circle-card"
               >
                 <div className="circle-image-wrapper">
+                  {/* Category Background Image */}
+                  <img src={cat.image} alt={cat.label} className="circle-bg-image" />
+                  
+                  {/* Deep Dark Overlay to ensure readability */}
                   <div className="circle-blueprint-overlay"></div>
-                  <span className="circle-placeholder-text">{cat.imgText}</span>
-                </div>
-                <div className="circle-card-meta">
-                  <span className="cat-short-tag">{cat.short}</span>
-                  <h3>{cat.label}</h3>
+                  
+                  {/* Content positioned on top of the image */}
+                  <div className="circle-overlay-content">
+                    <span className="cat-short-tag">{cat.short}</span>
+                    <h3 className="category-overlay-title">{cat.label}</h3>
+                  </div>
                 </div>
               </a>
             ))}
@@ -203,6 +204,8 @@ const Home = () => {
                 <div className="product-cards-grid">
                   {productCatalog[cat.id].map((product, index) => (
                     <div key={index} className="product-card">
+                      
+                      {/* Product Image Window Component */}
                       <div className="product-image-container">
                         {product.image ? (
                           <img src={product.image} alt={product.name} className="product-image" />
@@ -211,8 +214,19 @@ const Home = () => {
                             <span>Image Specifications Pending</span>
                           </div>
                         )}
-                        <div className="product-badge">{index + 1}</div>
+                        
+                        {/* Absolute bottom text overlay wrapper */}
+                        <div className="home-image-text-overlay">
+                          <span className="home-overlay-delivery">Free delivery within Nairobi</span>
+                          <span className="home-overlay-brand">A product of PMW</span>
+                        </div>
+
+                        {/* Top-Right Premium Status Indicator */}
+                        <div className="product-orange-status">
+                          PMW Certified
+                        </div>
                       </div>
+
                       <div className="product-details">
                         <h3 className="product-name">{product.name}</h3>
                         <p className="product-description">{product.detail}</p>

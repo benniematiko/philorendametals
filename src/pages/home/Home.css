@@ -177,88 +177,118 @@ html {
   font-weight: 800;
 }
 
-/* 6-Column Navigation Circle Matrix Grid */
+/* 6-Column Navigation Circle Matrix Grid (Horizontal Single-Row) */
 .categories-circular-grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 1.5rem;
-  margin-bottom: 6rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin: 30px auto 60px auto;
+  max-width: 1200px;
+  width: 100%;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Hide scrollbar styles for clean aesthetics on desktop, keeping swipe on mobile */
+.categories-circular-grid::-webkit-scrollbar {
+  display: none;
 }
 
 .category-circle-card {
-  background: var(--white);
-  padding: 1.5rem 1rem;
-  border-radius: 12px;
-  border: 1px solid rgba(0, 51, 102, 0.05);
-  text-align: center;
-  text-decoration: none; /* Strip standard anchor lines */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  flex-shrink: 0;
   cursor: pointer;
-  transition: all 0.3s var(--transition-smooth);
-  display: block;
+  transition: transform 0.3s var(--transition-smooth);
 }
 
 .category-circle-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--primary-blue);
-  box-shadow: 0 12px 25px rgba(0, 51, 102, 0.06);
+  transform: translateY(-5px);
 }
 
+/* Circle Image Wrapper - Compact Sizing for Single Row Fit */
 .circle-image-wrapper {
   position: relative;
-  width: 100px;
-  height: 100px;
-  margin: 0 auto 1.25rem auto;
+  width: 110px; 
+  height: 110px;
   border-radius: 50%;
-  background: var(--dark-blue);
   overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border: 2px solid #ff6b00; /* Standard Safety Orange */
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 3px solid var(--white);
-  box-shadow: 0 4px 15px rgba(0, 33, 102, 0.1);
-  transition: transform 0.3s ease;
 }
 
-.category-circle-card:hover .circle-image-wrapper {
-  transform: scale(1.05);
-  border-color: var(--primary-blue);
-}
-
-.circle-blueprint-overlay {
-  position: absolute;
+/* Background Image styling inside the circle */
+.circle-bg-image {
   width: 100%;
   height: 100%;
-  opacity: 0.1;
-  background-size: 12px 12px;
-  background-image: linear-gradient(to right, var(--white) 1px, transparent 1px),
-                    linear-gradient(to bottom, var(--white) 1px, transparent 1px);
+  object-fit: cover;
+  transition: transform 0.5s ease;
 }
 
-.circle-placeholder-text {
-  color: rgba(255, 255, 255, 0.6);
-  font-family: monospace;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 1px;
+.category-circle-card:hover .circle-bg-image {
+  transform: scale(1.15);
+}
+
+/* Darkened Tint Overlay for text legibility */
+.circle-blueprint-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.55); 
+  transition: background 0.3s ease;
   z-index: 1;
-  text-transform: uppercase;
 }
 
-.circle-card-meta .cat-short-tag {
-  font-size: 0.65rem;
-  font-weight: 700;
-  color: var(--primary-blue);
-  letter-spacing: 1px;
-  display: block;
-  text-transform: uppercase;
-  margin-bottom: 4px;
+.category-circle-card:hover .circle-blueprint-overlay {
+  background: rgba(0, 0, 0, 0.4); 
 }
 
-.circle-card-meta h3 {
-  font-size: 0.95rem;
+/* Overlay Content Text Wrapper */
+.circle-overlay-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  box-sizing: border-box;
+  text-align: center;
+  z-index: 2;
+}
+
+/* Series small tag inside Category Circle */
+.cat-short-tag {
+  color: #2ec4b6; /* High contrast teal */
+  font-size: 8px;
   font-weight: 700;
-  color: var(--dark-blue);
-  line-height: 1.3;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 2px;
+}
+
+/* Category Main Title Overlaid - Compact Text */
+.category-overlay-title {
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.2;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.85);
 }
 
 /* ==========================================================================
@@ -267,7 +297,7 @@ html {
 .sequential-catalog-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 5rem; /* Stack distance between product categories */
+  gap: 5rem;
 }
 
 .catalog-display-panel {
@@ -276,7 +306,7 @@ html {
   border-radius: 12px;
   padding: 3rem;
   box-shadow: 0 20px 40px rgba(0, 33, 102, 0.02);
-  scroll-margin-top: 40px; /* Offset spacing context when jumping via links */
+  scroll-margin-top: 40px;
 }
 
 .panel-header-badge {
@@ -345,7 +375,7 @@ html {
   transform: scale(1.05);
 }
 
-/* Fallback blueprint container when image path configuration is empty strings */
+/* Fallback blueprint container when image configurations are missing */
 .blueprint-fallback-placeholder {
   width: 100%;
   height: 100%;
@@ -377,6 +407,7 @@ html {
   letter-spacing: 1px;
 }
 
+/* Product Badge (Z-index updated) */
 .product-badge {
   position: absolute;
   top: 12px;
@@ -392,9 +423,62 @@ html {
   font-weight: 700;
   font-size: 0.85rem;
   box-shadow: 0 2px 8px rgba(255, 123, 37, 0.3);
-  z-index: 2;
+  z-index: 3;
 }
 
+/* Standard Safety Orange Status Badge (Top Right) */
+.product-orange-status {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background-color: #ff6b00;
+  color: var(--white);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 3;
+}
+
+/* Bottom Text Overlays (Delivery info & Brand) */
+.home-image-text-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.4) 65%, transparent 100%);
+  padding: 24px 14px 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  pointer-events: none;
+  z-index: 2;
+  text-align: left;
+}
+
+.home-overlay-delivery {
+  color: #2ec4b6; /* Clean active industrial teal */
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.home-overlay-brand {
+  color: var(--white);
+  font-size: 12.5px;
+  font-weight: 500;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  opacity: 0.95;
+}
+
+/* ==========================================================================
+   PRODUCT CARD DETAILED META
+   ========================================================================== */
 .product-details {
   padding: 1.5rem;
   flex: 1;
@@ -482,13 +566,6 @@ html {
 /* ==========================================================================
    RESPONSIVE LAYOUT MATRIX DOWN-SCALING
    ========================================================================== */
-@media (max-width: 1200px) {
-  .categories-circular-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-  }
-}
-
 @media (max-width: 768px) {
   .hero-actions {
     flex-direction: column;
@@ -498,12 +575,6 @@ html {
   .btn-primary, .btn-secondary {
     text-align: center;
     width: 100%;
-  }
-  
-  .categories-circular-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.25rem;
-    margin-bottom: 3.5rem;
   }
   
   .catalog-display-panel {
@@ -522,10 +593,6 @@ html {
 }
 
 @media (max-width: 480px) {
-  .categories-circular-grid {
-    grid-template-columns: 1fr;
-  }
-  
   .section-header h2 {
     font-size: 1.85rem;
   }

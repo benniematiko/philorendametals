@@ -1,15 +1,30 @@
 import React, { useState, useMemo } from 'react';
 import './Products.css';
 
-// Import asset files matching Home matrix
+// Import asset files matching the product catalog matrix
 import Mixer350 from "../../assets/mixer.png";
 import Sheller350 from "../../assets/sheller.png";
+import Mixer750 from "../../assets/mixer750.png";
+// import EggLayer from "../../assets/egglayer.png";
+// import StaticPress from "../../assets/staticpress.png";
+// import CasementWindow from "../../assets/casementwindow.png";
+// import "" from "../../assets/"".png";
+// import BurglarDoor from "../../assets/burglardoor.png";
+// import SlidingGate from "../../assets/slidinggate.png";
+import Square1 from "../../assets/square.png";
+import Zigzag1 from "../../assets/zigzagcabromold.png";
+import Feedmix from "../../assets/feedmix.png";
+import Grill from "../../assets/grill.png";
+import Inter1 from "../../assets/inter.png";
+import Paving1 from "../../assets/paving.png";
+import SlidingGate from "../../assets/steeldoor.png";
+import CulvertMold from "../../assets/culvertmold.png";
 
 const Products = () => {
   // 1. Reactive Navigation Filter States (Only searchQuery remains)
   const [searchQuery, setSearchQuery] = useState('');
 
-  // 2. Verified Complete Product Database (Updated to Kshs)
+  // 2. Verified Complete Product Database (All items fully linked to images)
   const fullProductsMatrix = useMemo(() => [
     { 
       id: "mix-350",
@@ -38,7 +53,7 @@ const Products = () => {
       specs: { capacity: "3-Bag Mix", power: "Hydraulic Diesel Combo", weight: "740 kg" },
       detail: "Industrial-grade mixer with reinforced alloy drum structural framing and advanced hydraulic tip control configurations.",
       price: "Kshs 8,950.00",
-      image: "",
+      image: Mixer750,
       availability: "Built to Order"
     },
     { 
@@ -48,7 +63,7 @@ const Products = () => {
       specs: { output: "900 Units / Day", moldSize: "9x9x18 inches", operation: "Manual Lever" },
       detail: "High-yield mobile mechanical drop layout for structural block units. Low maintenance overhead, perfect for decentralized fabrication.",
       price: "Kshs 3,450.00",
-      image: "",
+      image: Paving1,
       availability: "In Stock"
     },
     { 
@@ -58,7 +73,7 @@ const Products = () => {
       specs: { output: "3,200 Units / Day", pressure: "160 Bar Hydraulic", operation: "Semi-Automated" },
       detail: "Stationary heavy production matrix machine built for high-density interlocking paving blocks and solid foundation bricks.",
       price: "Kshs 12,750.00",
-      image: "",
+      image: Grill,
       availability: "6 Weeks Production"
     },
     { 
@@ -68,7 +83,7 @@ const Products = () => {
       specs: { gauge: "14-Gauge Profile", security: "Integrated Bars", glass: "Fits 5mm-8mm" },
       detail: "Heavy gauge iron frames complete with integrated burglarproofing bars, cold-rolled weather seals, and brass fastener hinges.",
       price: "Kshs 2,850.00",
-      image: "",
+      image: Feedmix,
       availability: "In Stock"
     },
     { 
@@ -78,7 +93,7 @@ const Products = () => {
       specs: { gauge: "16-Gauge Slim", security: "High-Tensile Internal", glass: "Double-Glaze Ready" },
       detail: "Premium clean-line steel architectural profiles pre-treated with zinc chromate primer for maximum weather protection.",
       price: "Kshs 3,400.00",
-      image: "",
+      image: Zigzag1,
       availability: "Custom Dimensions"
     },
     { 
@@ -88,7 +103,7 @@ const Products = () => {
       specs: { cladding: "3mm Steel Plate", lock: "4-Way Deadbolt System", finish: "Powder Coated" },
       detail: "Heavy cladding sheets over structural framework, featuring internal anti-cut armor channels and reinforced hinge points.",
       price: "Kshs 4,250.00",
-      image: "",
+      image: Square1,
       availability: "In Stock"
     },
     { 
@@ -98,7 +113,7 @@ const Products = () => {
       specs: { track: "Solid Ground V-Track", core: "4x4 inch Frame", automation: "Ready Layout" },
       detail: "Constructed with massive structural perimeter profiles and heavy guide wheels, structurally balanced for external automation gear.",
       price: "Kshs 5,600.00",
-      image: "",
+      image: SlidingGate,
       availability: "Custom Layout Only"
     },
     { 
@@ -108,7 +123,7 @@ const Products = () => {
       specs: { diameter: "900mm Standard", plate: "6mm Heavy Plate", lock: "Tapered Pins" },
       detail: "Heavy-duty interlocking structural wall mold assemblies optimized for repeatable, uniform drainage concrete casting.",
       price: "Kshs 9,200.00",
-      image: "",
+      image: CulvertMold,
       availability: "2 Weeks Lead Time"
     }
   ], []);
@@ -137,7 +152,7 @@ const Products = () => {
       <div className="products-dashboard-layout">
         <div className="dashboard-container">
           
-          {/* SEARCH CONTROL STATION (Navigation Tabs Removed) */}
+          {/* SEARCH CONTROL STATION */}
           <div className="control-station-panel">
             <div className="search-input-wrapper">
               <span className="search-icon">🔍</span>
@@ -160,7 +175,7 @@ const Products = () => {
             {searchQuery && <span className="active-filter-pill">Search: "{searchQuery}"</span>}
           </div>
 
-          {/* GRID INVENTORY INTERFACE */}
+          {/* GRID INVENTORY INTERFACE (4 Cards Per Row on Desktop) */}
           {processedProducts.length > 0 ? (
             <div className="inventory-dashboard-grid">
               {processedProducts.map((product) => (
@@ -207,7 +222,7 @@ const Products = () => {
                         <h3 className="currency-readout">{product.price}</h3>
                       </div>
                       <div className="inventory-action-group">
-                        <a href="#contact" className="btn-spec-quote">Request Technical Blueprint</a>
+                        <a href="#contact" className="btn-spec-quote">Blueprint Specs</a>
                       </div>
                     </div>
 
@@ -217,7 +232,7 @@ const Products = () => {
               ))}
             </div>
           ) : (
-            /* EMPTY FILTER CONFIGURATION CONTEXT STATE */
+            /* EMPTY FILTER CONFIGURATION STATE */
             <div className="empty-inventory-state">
               <div className="empty-warning-graphic">⚠️</div>
               <h3>No Engineering Matrix Found</h3>

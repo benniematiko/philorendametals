@@ -42,7 +42,7 @@ const ContactSection = () => {
               <div className="info-icon">🏢</div>
               <div className="info-text">
                 <h3>Main Office & Foundry</h3>
-                <p>Industrial Layout Plot 14, Manufacturing District</p>
+                <p>Kariobangi North, Plot 14, Manufacturing District</p>
               </div>
             </div>
 
@@ -50,7 +50,8 @@ const ContactSection = () => {
               <div className="info-icon">📞</div>
               <div className="info-text">
                 <h3>Direct Sales Line</h3>
-                <p>+1 (234) 567-8900 (Mon - Sat, 7AM - 5PM)</p>
+                <p>(+254) 726 471 291(Mon - Sat, 7AM - 5PM)</p>
+               
               </div>
             </div>
 
