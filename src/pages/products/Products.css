@@ -182,8 +182,9 @@
    ========================================================================== */
 .inventory-dashboard-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
-  gap: 2.5rem;
+  /* Reduced baseline minimum width slightly to 320px for reliable grid fitting */
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem; /* Adjusted gap slightly to optimize card horizontal real estate */
 }
 
 .inventory-spec-card {
@@ -437,7 +438,22 @@
 /* ==========================================================================
    RESPONSIVE SCALING ADAPTABILITY
    ========================================================================== */
-@media (max-width: 992px) {
+/* Enforce exactly 3 columns on large desktop viewports */
+@media (min-width: 1200px) {
+  .inventory-dashboard-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Fall back to 2 columns on medium screens and tablets */
+@media (max-width: 1199px) and (min-width: 768px) {
+  .inventory-dashboard-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Fall back to a clean 1-column layout on modern mobile screen sizes */
+@media (max-width: 767px) {
   .inventory-dashboard-grid {
     grid-template-columns: 1fr;
   }
@@ -456,5 +472,3 @@
     width: 100%;
   }
 }
-
-

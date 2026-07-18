@@ -90,7 +90,7 @@ const ContactSection = () => {
                   name="email" 
                   value={formData.email} 
                   onChange={handleChange} 
-                  placeholder="j.doe@company.com" 
+                  placeholder="b.munyiri@company.com" 
                   required 
                 />
               </div>
@@ -103,7 +103,7 @@ const ContactSection = () => {
                   name="phone" 
                   value={formData.phone} 
                   onChange={handleChange} 
-                  placeholder="+1 (555) 000-0000" 
+                  placeholder="+254 724 XXX XXX" 
                   required 
                 />
               </div>

@@ -61,7 +61,7 @@ const Contact = () => {
             <div className="form-group-row">
               <div className="form-group">
                 <label htmlFor="name">Full Name</label>
-                <input type="text" id="name" name="name" required value={formData.name} onChange={handleChange} placeholder="e.g., Eng. John Doe" />
+                <input type="text" id="name" name="name" required value={formData.name} onChange={handleChange} placeholder="e.g., Eng. Ben Munyiri" />
               </div>
               <div className="form-group">
                 <label htmlFor="company">Company / Organization</label>

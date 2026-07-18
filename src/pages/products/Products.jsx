@@ -20,6 +20,9 @@ import Paving1 from "../../assets/paving.png";
 import SlidingGate from "../../assets/steeldoor.png";
 import CulvertMold from "../../assets/culvertmold.png";
 
+
+import PostMold10Feet from "../../assets/postmold10feet.png"; 
+
 const Products = () => {
   // 1. Reactive Navigation Filter States (Only searchQuery remains)
   const [searchQuery, setSearchQuery] = useState('');
@@ -32,7 +35,7 @@ const Products = () => {
       name: "PMW-350L Diesel Engine Mixer", 
       specs: { capacity: "1-Bag Mix", power: "Lister Petter Type Diesel", weight: "380 kg" },
       detail: "Heavy-duty steel drum, 1-bag capacity, powered by a high-torque mechanical start engine optimized for rough site conditions.",
-      price: "Kshs 4,850.00",
+      price: "Kshs 380,000.00",
       image: Mixer350,
       availability: "In Stock"
     },
