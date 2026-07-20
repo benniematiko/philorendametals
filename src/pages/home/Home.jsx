@@ -15,19 +15,14 @@ import Colors from "../../assets/colors.png";
 import Culvert from "../../assets/culvert.png";
 import CulvertMold from "../../assets/culvertmold.png";
 import FeedMix from "../../assets/feedmix.png";
-
 import Grill from "../../assets/grill.png";
-
 import SecurityDoor1 from "../../assets/steeldoor.png"; 
 import SecurityDoor2 from "../../assets/steeldoor1.png"; 
-
 import SlidingGate from "../../assets/zigzagcabromold.png"; 
 import SwingGate from "../../assets/vibratingtable.png";  
-
 import PostMold10Feet from "../../assets/postmold10feet.png";  
 import PostMold8Feet from "../../assets/postmold8feet.png";  
 import Sheller1 from "../../assets/sheller.png"; 
-
 import Wheel1 from "../../assets/wheel1.png";  
 import Doors1 from "../../assets/steeldoor1.png";  
 import Window from "../../assets/window.png";  
@@ -220,7 +215,7 @@ const Home = () => {
       },
       { 
         name: "Maize Sheller", 
-        detail: "Used fro shelling maize seeds from its corn..",
+        detail: "Used for shelling maize seeds from its corn.",
         price: "Kshs 55,000.00",
         image: Sheller1
       }
@@ -230,7 +225,7 @@ const Home = () => {
         name: "PMW Deep-Tray Construction Wheelbarrow",
         detail: "Reinforced pan sheet with heavy structural tubing handles, built for site concrete and aggregative haulage.",
         price: "Price Available Upon request",
-        image: ""
+        image: Wheel1
       },
       {
         name: "Wheel Barrow",
@@ -244,7 +239,7 @@ const Home = () => {
         name: "High-Output Aggregate Mechanical Crusher",
         detail: "Heavy duty impact blades engineered to break down raw industrial substances with uniform sizing outputs.",
         price: "Price Available Upon request",
-        image: ""
+        image: FeedMix
       },
       {
         name: "Tone Gold Crusher",
@@ -258,13 +253,13 @@ const Home = () => {
         name: "Industrial Extrusion Plodder Assembly",
         detail: "Refining and extrusion machine designed with continuous feed compression worms for manufacturing processes.",
         price: "Price Available Upon request",
-        image: ""
+        image: PostMold10Feet
       },
       {
         name: "Soap Plodder Big size",
         detail: "Makes bar soaps.",
         price: "Kshs 260,000.00",
-        image: ""
+        image: PostMold10Feet
       }
     ]
   };
@@ -324,7 +319,7 @@ const Home = () => {
             <h2>Our Manufacturing Categories</h2>
           </div>
 
-          {/* Dynamic Circular Grid Layout */}
+          {/* Dynamic Circular Grid Layout - All categories visible */}
           <div className="categories-circular-grid">
             {categories.map((cat) => (
               <a 
@@ -344,7 +339,7 @@ const Home = () => {
             ))}
           </div>
 
-          {/* Sequential Row Display Framework */}
+          {/* Sequential Row Display Framework - ALL products displayed */}
           <div className="sequential-catalog-wrapper">
             {categories.map((cat) => (
               <div 
