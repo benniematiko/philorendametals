@@ -16,17 +16,13 @@ import CulvertMold from "../../assets/culvertmold.png";
 import PostMold10Feet from "../../assets/postmold10feet.png"; 
 
 const Products = () => {
-  // 1. Reactive Navigation & Modal States
+  // Reactive Search State
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedProduct, setSelectedProduct] = useState(null); // Tracks which item is open in the modal
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Form Submission States
-  const [formSubmitted, setFormSubmitted] = useState(false);
-  const [clientName, setClientName] = useState('');
-  const [clientPhone, setClientPhone] = useState('');
+  // Target phone number formatted for global WhatsApp API execution
+  const WHATSAPP_NUMBER = "+254700000000"; // Replace with your actual business number
 
-  // 2. Verified Complete Product Database
+  // Verified Complete Product Database
   const fullProductsMatrix = useMemo(() => [
     { 
       id: "mix-350",
@@ -130,7 +126,7 @@ const Products = () => {
     }
   ], []);
 
-  // 3. Live Parsing Computation Engine
+  // Live Parsing Computation Engine
   const processedProducts = useMemo(() => {
     return fullProductsMatrix.filter((item) => {
       return item.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
@@ -139,21 +135,22 @@ const Products = () => {
     });
   }, [searchQuery, fullProductsMatrix]);
 
-  // Action: Open Blueprint Specs Request Overlay
-  const handleOpenSpecsRequest = (e, product) => {
-    e.preventDefault();
-    setSelectedProduct(product);
-    setIsModalOpen(true);
-    setFormSubmitted(false);
-    setClientName('');
-    setClientPhone('');
-  };
+  // Compiles product details and redirects user to WhatsApp
+  const handleWhatsAppRedirect = (product) => {
+    const specsString = Object.entries(product.specs)
+      .map(([key, val]) => `• ${key.toUpperCase()}: ${val}`)
+      .join('\n');
 
-  // Action: Handle Form Submit (Simulated or via WhatsApp / API integration)
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    // Here you can hook up your backend or a WhatsApp API redirection line
-    setFormSubmitted(true);
+    const message = `Hello, I would like to request the full Blueprint Specs package for the following model:\n\n` +
+                    `📦 *Model Name:* ${product.name}\n` +
+                    `🆔 *Catalog ID:* ${product.id.toUpperCase()}\n` +
+                    `💰 *Price Estimate:* ${product.price}\n` +
+                    `⚡ *Availability Status:* ${product.availability}\n\n` +
+                    `*Technical Metrics:* \n${specsString}\n\n` +
+                    `Please share the detailed engineering sizing options and deployment requirements.`;
+
+    const encodedMessage = encodeURIComponent(message);
+    window.open(`https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encodedMessage}`, '_blank');
   };
 
   return (
@@ -242,9 +239,8 @@ const Products = () => {
                       </div>
                       <div className="inventory-action-group">
                         <button 
-                          onClick={(e) => handleOpenSpecsRequest(e, product)} 
+                          onClick={() => handleWhatsAppRedirect(product)} 
                           className="btn-spec-quote"
-                          style={{ cursor: 'pointer' }}
                         >
                           Blueprint Specs
                         </button>
@@ -273,63 +269,6 @@ const Products = () => {
 
         </div>
       </div>
-
-      {/* DYNAMIC BLUEPRINT INQUIRY MODAL OVERLAY */}
-      {isModalOpen && selectedProduct && (
-        <div className="modal-backdrop-overlay" onClick={() => setIsModalOpen(false)}>
-          <div className="modal-window-surface" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-header-block">
-              <h3>Request Technical Blueprint</h3>
-              <button className="modal-close-cross" onClick={() => setIsModalOpen(false)}>×</button>
-            </div>
-            
-            <div className="modal-body-content">
-              <div className="modal-product-summary-badge">
-                <p><strong>Selected Model:</strong> {selectedProduct.name}</p>
-                <p><strong>Reference Catalog ID:</strong> {selectedProduct.id.toUpperCase()}</p>
-                <p><strong>Estimated Quote Value:</strong> {selectedProduct.price}</p>
-              </div>
-
-              {!formSubmitted ? (
-                <form onSubmit={handleFormSubmit} className="modal-spec-form">
-                  <div className="form-field-group">
-                    <label>Your Name / Company Name:</label>
-                    <input 
-                      type="text" 
-                      required 
-                      value={clientName}
-                      onChange={(e) => setClientName(e.target.value)}
-                      placeholder="e.g. Ben Matiko Builders" 
-                    />
-                  </div>
-                  <div className="form-field-group">
-                    <label>Phone Number (for Spec Delivery):</label>
-                    <input 
-                      type="tel" 
-                      required 
-                      value={clientPhone}
-                      onChange={(e) => setClientPhone(e.target.value)}
-                      placeholder="e.g. +254 7XX XXX XXX" 
-                    />
-                  </div>
-                  <button type="submit" className="modal-action-submit-btn">
-                    Submit Specs Request
-                  </button>
-                </form>
-              ) : (
-                <div className="modal-success-state-view">
-                  <div className="success-icon-check">✓</div>
-                  <h4>Request Registered Successfully!</h4>
-                  <p>Thank you {clientName}. The engineering metrics package and dynamic sizing options for the <strong>{selectedProduct.name}</strong> are being processed.</p>
-                  <button className="modal-close-finish-btn" onClick={() => setIsModalOpen(false)}>
-                    Return to Catalog
-                  </button>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
 
     </div>
   );
