@@ -5,12 +5,6 @@ import './Products.css';
 import Mixer350 from "../../assets/mixer.png";
 import Sheller350 from "../../assets/sheller.png";
 import Mixer750 from "../../assets/mixer750.png";
-// import EggLayer from "../../assets/egglayer.png";
-// import StaticPress from "../../assets/staticpress.png";
-// import CasementWindow from "../../assets/casementwindow.png";
-// import "" from "../../assets/"".png";
-// import BurglarDoor from "../../assets/burglardoor.png";
-// import SlidingGate from "../../assets/slidinggate.png";
 import Square1 from "../../assets/square.png";
 import Zigzag1 from "../../assets/zigzagcabromold.png";
 import Feedmix from "../../assets/feedmix.png";
@@ -19,15 +13,20 @@ import Inter1 from "../../assets/inter.png";
 import Paving1 from "../../assets/paving.png";
 import SlidingGate from "../../assets/steeldoor.png";
 import CulvertMold from "../../assets/culvertmold.png";
-
-
 import PostMold10Feet from "../../assets/postmold10feet.png"; 
 
 const Products = () => {
-  // 1. Reactive Navigation Filter States (Only searchQuery remains)
+  // 1. Reactive Navigation & Modal States
   const [searchQuery, setSearchQuery] = useState('');
+  const [selectedProduct, setSelectedProduct] = useState(null); // Tracks which item is open in the modal
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // 2. Verified Complete Product Database (All items fully linked to images)
+  // Form Submission States
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [clientName, setClientName] = useState('');
+  const [clientPhone, setClientPhone] = useState('');
+
+  // 2. Verified Complete Product Database
   const fullProductsMatrix = useMemo(() => [
     { 
       id: "mix-350",
@@ -131,7 +130,7 @@ const Products = () => {
     }
   ], []);
 
-  // 3. Live Parsing Computation Engine (Filters only by text query search)
+  // 3. Live Parsing Computation Engine
   const processedProducts = useMemo(() => {
     return fullProductsMatrix.filter((item) => {
       return item.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
@@ -139,6 +138,23 @@ const Products = () => {
              item.id.toLowerCase().includes(searchQuery.toLowerCase());
     });
   }, [searchQuery, fullProductsMatrix]);
+
+  // Action: Open Blueprint Specs Request Overlay
+  const handleOpenSpecsRequest = (e, product) => {
+    e.preventDefault();
+    setSelectedProduct(product);
+    setIsModalOpen(true);
+    setFormSubmitted(false);
+    setClientName('');
+    setClientPhone('');
+  };
+
+  // Action: Handle Form Submit (Simulated or via WhatsApp / API integration)
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    // Here you can hook up your backend or a WhatsApp API redirection line
+    setFormSubmitted(true);
+  };
 
   return (
     <div className="products-page">
@@ -178,7 +194,7 @@ const Products = () => {
             {searchQuery && <span className="active-filter-pill">Search: "{searchQuery}"</span>}
           </div>
 
-          {/* GRID INVENTORY INTERFACE (4 Cards Per Row on Desktop) */}
+          {/* GRID INVENTORY INTERFACE */}
           {processedProducts.length > 0 ? (
             <div className="inventory-dashboard-grid">
               {processedProducts.map((product) => (
@@ -225,7 +241,13 @@ const Products = () => {
                         <h3 className="currency-readout">{product.price}</h3>
                       </div>
                       <div className="inventory-action-group">
-                        <a href="#contact" className="btn-spec-quote">Blueprint Specs</a>
+                        <button 
+                          onClick={(e) => handleOpenSpecsRequest(e, product)} 
+                          className="btn-spec-quote"
+                          style={{ cursor: 'pointer' }}
+                        >
+                          Blueprint Specs
+                        </button>
                       </div>
                     </div>
 
@@ -251,6 +273,63 @@ const Products = () => {
 
         </div>
       </div>
+
+      {/* DYNAMIC BLUEPRINT INQUIRY MODAL OVERLAY */}
+      {isModalOpen && selectedProduct && (
+        <div className="modal-backdrop-overlay" onClick={() => setIsModalOpen(false)}>
+          <div className="modal-window-surface" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header-block">
+              <h3>Request Technical Blueprint</h3>
+              <button className="modal-close-cross" onClick={() => setIsModalOpen(false)}>×</button>
+            </div>
+            
+            <div className="modal-body-content">
+              <div className="modal-product-summary-badge">
+                <p><strong>Selected Model:</strong> {selectedProduct.name}</p>
+                <p><strong>Reference Catalog ID:</strong> {selectedProduct.id.toUpperCase()}</p>
+                <p><strong>Estimated Quote Value:</strong> {selectedProduct.price}</p>
+              </div>
+
+              {!formSubmitted ? (
+                <form onSubmit={handleFormSubmit} className="modal-spec-form">
+                  <div className="form-field-group">
+                    <label>Your Name / Company Name:</label>
+                    <input 
+                      type="text" 
+                      required 
+                      value={clientName}
+                      onChange={(e) => setClientName(e.target.value)}
+                      placeholder="e.g. Ben Matiko Builders" 
+                    />
+                  </div>
+                  <div className="form-field-group">
+                    <label>Phone Number (for Spec Delivery):</label>
+                    <input 
+                      type="tel" 
+                      required 
+                      value={clientPhone}
+                      onChange={(e) => setClientPhone(e.target.value)}
+                      placeholder="e.g. +254 7XX XXX XXX" 
+                    />
+                  </div>
+                  <button type="submit" className="modal-action-submit-btn">
+                    Submit Specs Request
+                  </button>
+                </form>
+              ) : (
+                <div className="modal-success-state-view">
+                  <div className="success-icon-check">✓</div>
+                  <h4>Request Registered Successfully!</h4>
+                  <p>Thank you {clientName}. The engineering metrics package and dynamic sizing options for the <strong>{selectedProduct.name}</strong> are being processed.</p>
+                  <button className="modal-close-finish-btn" onClick={() => setIsModalOpen(false)}>
+                    Return to Catalog
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
 
     </div>
   );

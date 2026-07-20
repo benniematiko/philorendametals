@@ -1,6 +1,18 @@
 /* ==========================================================================
    PRODUCTS INDEPENDENT DASHBOARD STYLE ARCHITECTURE
    ========================================================================== */
+
+/* Fallback Architectural Design System Variables */
+:root {
+  --white: #ffffff;
+  --black: #1a202c;
+  --orange: #f97316;
+  --dark-blue: #0f2b46;
+  --primary-blue: #2563eb;
+  --light-blue: #eef3f9;
+  --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .products-page {
   background-color: #f8f9fa;
   min-height: 100vh;
@@ -182,9 +194,8 @@
    ========================================================================== */
 .inventory-dashboard-grid {
   display: grid;
-  /* Reduced baseline minimum width slightly to 320px for reliable grid fitting */
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 2rem; /* Adjusted gap slightly to optimize card horizontal real estate */
+  gap: 2rem;
 }
 
 .inventory-spec-card {
@@ -375,23 +386,31 @@
   color: var(--primary-blue);
 }
 
+/* Consolidated Concrete Button Specs (Vibrant Orange -> Engineering Blue) */
 .btn-spec-quote {
-  background: var(--dark-blue);
-  color: var(--white);
-  padding: 0.75rem 1.2rem;
-  border-radius: 4px;
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-decoration: none;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  transition: all 0.2s ease;
   display: inline-block;
+  padding: 10px 18px;
+  font-size: 0.9rem;
+  font-weight: 600;
   text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  background-color: var(--orange);
+  color: var(--white);
+  transition: background-color 0.25s var(--transition-smooth), color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .btn-spec-quote:hover {
-  background: var(--orange);
+  background-color: var(--primary-blue);
+  color: var(--white);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+.btn-spec-quote:focus {
+  outline: none;
 }
 
 /* --- EMPTY SEARCH MATRIX OVERLAY FALLBACK --- */
@@ -429,6 +448,7 @@
   border-radius: 4px;
   cursor: pointer;
   text-transform: uppercase;
+  transition: background-color 0.2s ease;
 }
 
 .reset-dashboard-btn:hover {
@@ -438,21 +458,18 @@
 /* ==========================================================================
    RESPONSIVE SCALING ADAPTABILITY
    ========================================================================== */
-/* Enforce exactly 3 columns on large desktop viewports */
 @media (min-width: 1200px) {
   .inventory-dashboard-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-/* Fall back to 2 columns on medium screens and tablets */
 @media (max-width: 1199px) and (min-width: 768px) {
   .inventory-dashboard-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* Fall back to a clean 1-column layout on modern mobile screen sizes */
 @media (max-width: 767px) {
   .inventory-dashboard-grid {
     grid-template-columns: 1fr;
@@ -471,4 +488,144 @@
   .btn-spec-quote {
     width: 100%;
   }
+}
+
+/* ====================== SPEC OVERLAY MODAL STYLES ====================== */
+.modal-backdrop-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  backdrop-filter: blur(4px);
+}
+
+.modal-window-surface {
+  background: var(--white);
+  width: 100%;
+  max-width: 500px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  animation: modalFadeIn 0.25s ease-out;
+}
+
+@keyframes modalFadeIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-header-block {
+  background: #1a202c;
+  color: var(--white);
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header-block h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.modal-close-cross {
+  background: transparent;
+  border: none;
+  color: #a0aec0;
+  font-size: 24px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.modal-close-cross:hover {
+  color: var(--white);
+}
+
+.modal-body-content {
+  padding: 24px;
+}
+
+.modal-product-summary-badge {
+  background: #f7fafc;
+  border-left: 4px solid #3182ce;
+  padding: 12px 16px;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 20px;
+}
+
+.modal-product-summary-badge p {
+  margin: 4px 0;
+  font-size: 0.9rem;
+  color: #4a5568;
+}
+
+.modal-spec-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-field-group label {
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #2d3748;
+}
+
+.form-field-group input {
+  padding: 10px 12px;
+  border: 1px solid #cbd5e0;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+.form-field-group input:focus {
+  outline: none;
+  border-color: #3182ce;
+  box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.15);
+}
+
+.modal-action-submit-btn, 
+.modal-close-finish-btn {
+  background: #3182ce;
+  color: var(--white);
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.2s;
+}
+
+.modal-action-submit-btn:hover, 
+.modal-close-finish-btn:hover {
+  background: #2b6cb0;
+}
+
+.modal-success-state-view {
+  text-align: center;
+  padding: 20px 10px;
+}
+
+.success-icon-check {
+  font-size: 40px;
+  color: #38a169;
+  background: #c6f6d5;
+  width: 70px;
+  height: 70px;
+  line-height: 70px;
+  border-radius: 50%;
+  margin: 0 auto 16px;
 }
